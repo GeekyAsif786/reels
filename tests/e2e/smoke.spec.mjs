@@ -30,6 +30,14 @@ test("bare root and /reels redirect to /reels/", async ({ page }) => {
   await expect(page.locator(".badge")).toHaveCount(2);
 });
 
+test("repo files are not published", async ({ request }) => {
+  for (const path of ["/README.md", "/package.json", "/netlify.toml", "/scripts/validate.mjs"]) {
+    const res = await request.get(path, { maxRedirects: 0 });
+    expect(res.status(), path).toBe(404);
+    expect(await res.text(), path).toContain("That page doesn't exist.");
+  }
+});
+
 test("/reels/ loads with profile, canonical and CSP", async ({ page }) => {
   const res = await page.goto("/reels/");
   expect(res.status()).toBe(200);

@@ -2,11 +2,11 @@
 # Static files only: no build step, no functions, no plugins.
 
 [build]
-  publish = "."
+  publish = "public"
   command = ""
 
 # --- security headers -------------------------------------------------------
-# Keep the CSP in sync with the <meta http-equiv> tag in reels/index.html.
+# Keep the CSP in sync with the <meta http-equiv> tag in public/reels/index.html.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -31,48 +31,6 @@
   from = "/reels"
   to = "/reels/"
   status = 301
-
-# publish = "." also uploads repo tooling. Hide it (force = true wins over real files).
-[[redirects]]
-  from = "/README.md"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/package.json"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/package-lock.json"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/netlify.toml"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/playwright.config.mjs"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/scripts/*"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/tests/*"
-  to = "/reels/404.html"
-  status = 404
-  force = true
-[[redirects]]
-  from = "/.github/*"
-  to = "/reels/404.html"
-  status = 404
-  force = true
 
 # Anything else that doesn't exist.
 [[redirects]]

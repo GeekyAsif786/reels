@@ -7,24 +7,25 @@ Plain HTML/CSS/JS, no framework, no build step, no runtime dependencies, no anal
 The page makes no requests to any other origin (fonts are self-hosted, and the CSP enforces it).
 
 ```
-reels/
-  index.html     page shell
-  app.js         renders reels.json (textContent only, https-only links)
-  schema.js      validation rules shared by the page and CI
-  styles.css
-  reels.json     ← the only file you edit to add a reel
-  404.html
-  fonts/         Poppins + JetBrains Mono (woff2, latin) and their OFL licenses
+public/          ← Netlify publishes only this folder
+  reels/
+    index.html     page shell
+    app.js         renders reels.json (textContent only, https-only links)
+    schema.js      validation rules shared by the page and CI
+    styles.css
+    reels.json     ← the only file you edit to add a reel
+    404.html
+    fonts/         Poppins + JetBrains Mono (woff2, latin) and their OFL licenses
 scripts/
   validate.mjs   checks reels.json (CI runs it)
   serve.mjs      local static server with the same headers as netlify.toml
 tests/           node:test unit tests + Playwright smoke tests
-netlify.toml     publish ".", security headers, redirects
+netlify.toml     publish "public", security headers, redirects
 ```
 
 ## Adding a reel
 
-1. Open `reels/reels.json` and add an object to `reels` (the order doesn't matter; the page sorts newest first):
+1. Open `public/reels/reels.json` and add an object to `reels` (the order doesn't matter; the page sorts newest first):
 
    ```json
    {
@@ -67,7 +68,7 @@ Create a separate Netlify site from this repo (Add new site → Import from Git)
 | --- | --- |
 | Base directory | *(empty)* |
 | Build command | *(empty)* |
-| Publish directory | `.` |
+| Publish directory | `public` |
 | Production branch | `main` |
 | Functions / plugins / forms / analytics | none |
 
@@ -77,7 +78,8 @@ Everything else comes from `netlify.toml`:
   `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, a minimal `Permissions-Policy`.
   The same CSP is in a `<meta>` tag in `index.html` in case the proxy drops headers (minus `frame-ancestors`, which browsers ignore in meta tags).
 - `/` → `/reels/` (301), so the bare `*.netlify.app` URL lands on the page.
-- Because `publish = "."` uploads the whole repo, forced 404 rules hide `README.md`, `package.json`, `scripts/`, `tests/`, etc.
+- Anything that doesn't exist gets `/reels/404.html` with a 404 status. Only `public/` is published, so repo files
+  (`README.md`, `package.json`, `scripts/`, …) are never on the site.
 
 `<link rel="canonical" href="https://asifurrahaman.com/reels/">` keeps search engines on the custom domain,
 and "Copy link" buttons always copy `https://asifurrahaman.com/reels/#NN`.
@@ -111,4 +113,4 @@ Or the `_redirects` equivalent:
 ## Fonts
 
 Poppins and JetBrains Mono, from [Fontsource](https://fontsource.org) (latin subset, woff2), licensed under the
-SIL Open Font License 1.1. See `reels/fonts/OFL-Poppins.txt` and `reels/fonts/OFL-JetBrainsMono.txt`.
+SIL Open Font License 1.1. See `public/reels/fonts/OFL-Poppins.txt` and `public/reels/fonts/OFL-JetBrainsMono.txt`.

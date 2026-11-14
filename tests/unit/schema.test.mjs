@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { isSafeHttpsUrl, isIsoDate, validateData } from "../../reels/schema.js";
+import { isSafeHttpsUrl, isIsoDate, validateData } from "../../public/reels/schema.js";
 
 const base = () => ({
   profile: { name: "A", tagline: "B", links: [{ label: "GitHub", url: "https://github.com/x" }] },
@@ -9,7 +9,7 @@ const base = () => ({
 });
 
 test("the real reels.json is valid", async () => {
-  const data = JSON.parse(await readFile(new URL("../../reels/reels.json", import.meta.url), "utf8"));
+  const data = JSON.parse(await readFile(new URL("../../public/reels/reels.json", import.meta.url), "utf8"));
   assert.deepEqual(validateData(data).errors, []);
 });
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Validates reels/reels.json. Exit code 1 on any error. Run: npm run validate
-// The rules live in reels/schema.js, shared with the browser.
+// Validates public/reels/reels.json. Exit code 1 on any error. Run: npm run validate
+// The rules live in public/reels/schema.js, shared with the browser.
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { validateData } from "../reels/schema.js";
+import { validateData } from "../public/reels/schema.js";
 
-const file = process.argv[2] ?? fileURLToPath(new URL("../reels/reels.json", import.meta.url));
+const file = process.argv[2] ?? fileURLToPath(new URL("../public/reels/reels.json", import.meta.url));
 
 let data;
 try {
