@@ -1,0 +1,39 @@
+# Netlify site for https://asifurrahaman.com/reels (the blog proxies /reels/* here).
+# Static files only: no build step, no functions, no plugins.
+
+[build]
+  publish = "public"
+  command = ""
+
+# --- security headers -------------------------------------------------------
+# Keep the CSP in sync with the <meta http-equiv> tag in public/reels/index.html.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+[[headers]]
+  for = "/reels/fonts/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# --- redirects --------------------------------------------------------------
+# The bare netlify.app URL lands on the page.
+[[redirects]]
+  from = "/"
+  to = "/reels/"
+  status = 301
+
+[[redirects]]
+  from = "/reels"
+  to = "/reels/"
+  status = 301
+
+# Anything else that doesn't exist.
+[[redirects]]
+  from = "/*"
+  to = "/reels/404.html"
+  status = 404

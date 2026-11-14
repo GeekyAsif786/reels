@@ -1,0 +1,39 @@
+{
+  "profile": {
+    "name": "Asifur Rahaman",
+    "tagline": "Links and resources from my reels. Find the number from the caption below.",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/GeekyAsif786" },
+      { "label": "X", "url": "https://x.com/doxxed_asif" },
+      { "label": "Blog", "url": "https://asifurrahaman.com" },
+      { "label": "LinkedIn", "todo": "Add \"url\": \"https://www.linkedin.com/in/<your-handle>\" and delete this todo field" }
+    ]
+  },
+  "reels": [
+    {
+      "id": "01",
+      "title": "Photo rejected on the exam form?",
+      "date": "2026-11-13",
+      "tags": ["exams", "tools"],
+      "summary": "ExamSnap resizes and compresses your photo and signature to match exam form rules, right in your browser. Always check your exam's official notification for the exact requirements.",
+      "links": [
+        { "label": "Open ExamSnap", "url": "https://examsnap.xac3.xyz" },
+        { "label": "Source code on GitHub", "url": "https://github.com/GeekyAsif786/ExamSnap" }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Who's using port 3000?",
+      "date": "2026-11-14",
+      "tags": ["dev tools", "rust", "open source"],
+      "summary": "whatsup shows every port that’s listening on your machine (dev servers, databases, Docker containers), flags anything exposed to your network, and stops any of them with one key. Written in Rust and fully open source. Pick a good first issue if you want to contribute.",
+      "links": [
+        { "label": "GitHub repo", "url": "https://github.com/GeekyAsif786/whatsup" },
+        { "label": "Homebrew", "copy": "brew install GeekyAsif786/tap/whatsup" },
+        { "label": "npm", "copy": "npx whatsup-cli" },
+        { "label": "Cargo", "copy": "cargo install whatsup-cli" },
+        { "label": "Good first issues", "url": "https://github.com/GeekyAsif786/whatsup/issues?q=is%3Aopen+label%3A%22good+first+issue%22" }
+      ]
+    }
+  ]
+}
