@@ -1,0 +1,19 @@
+{
+  "name": "reels",
+  "private": true,
+  "description": "Static resources page for Instagram reels, served at https://asifurrahaman.com/reels/",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test:unit": "node --test \"tests/unit/*.test.mjs\"",
+    "test:e2e": "playwright test",
+    "test": "npm run validate && npm run test:unit && npm run test:e2e"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1"
+  }
+}
