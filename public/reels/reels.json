@@ -26,7 +26,7 @@
       "title": "Who's using port 3000?",
       "date": "2026-11-14",
       "tags": ["dev tools", "rust", "open source"],
-      "summary": "whatsup tells you which process is holding a port and lets you deal with it. Written in Rust and open source. Install it with any of the commands below, and pick a good first issue if you want to contribute.",
+      "summary": "whatsup shows every port that’s listening on your machine (dev servers, databases, Docker containers), flags anything exposed to your network, and stops any of them with one key. Written in Rust and fully open source. Pick a good first issue if you want to contribute.",
       "links": [
         { "label": "GitHub repo", "url": "https://github.com/GeekyAsif786/whatsup" },
         { "label": "Homebrew", "copy": "brew install GeekyAsif786/tap/whatsup" },
